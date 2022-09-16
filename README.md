@@ -14,9 +14,9 @@ Developed by Jessie Wilson (2022)
 
 `pip uninstall AutomaticDemuxer`
 
-## Video: Examples of How To Use
+## Examples of How To Use
 
-**Example with callback**
+**Video: Example with callback**
 
 ```python
 from automatic_demuxer import AutoDemuxer
@@ -41,7 +41,7 @@ demux.video_demux(file_input=r"fileinput.mkv", callback=callback_func)
 ```
 
 \
-**Example without callback**
+**Video: Example without callback**
 
 When not using callback the FFMPEG output is automatically printed to console in the format of a string.
 This does not include percentage.
@@ -53,7 +53,7 @@ demux = AutoDemuxer()
 demux.video_demux(file_input=r"fileinput.mkv")
 ```
 
-## Parameters
+## Video Parameters
 
 `file_input` String or Pathlike path to input file.
 
