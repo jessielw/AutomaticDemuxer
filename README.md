@@ -14,7 +14,7 @@ Developed by Jessie Wilson (2022)
 
 `pip uninstall AutomaticDemuxer`
 
-## Examples of How To Use
+## Video: Examples of How To Use
 
 **Example with callback**
 
@@ -53,7 +53,7 @@ demux = AutoDemuxer()
 demux.video_demux(file_input=r"fileinput.mkv")
 ```
 
-## Video Parameters
+## Parameters
 
 `file_input` String or Pathlike path to input file.
 
