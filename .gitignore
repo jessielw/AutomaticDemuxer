@@ -3,3 +3,4 @@ __pycache__/
 env/
 AutomaticDemuxer.egg-info/
 dist/
+example_upload_to_pypi.txt
