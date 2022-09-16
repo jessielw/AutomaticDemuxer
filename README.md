@@ -2,7 +2,7 @@
 
 Package to demux media-files into single file formats to be used elsewhere.
 
-*Video tracks are only supported as of v1.0*
+*Video tracks are only supported as of v1.2*
 
 Developed by Jessie Wilson (2022)
 
