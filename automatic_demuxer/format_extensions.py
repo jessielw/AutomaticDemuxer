@@ -1,7 +1,7 @@
-video_formats = {
+mkv_video_formats_conversion = {
     "V_MS/VFW/FOURCC": "avi",
     "V_UNCOMPRESSED": "raw",
-    "V_MPEG4/ISO/AVC": "avc",
+    "V_MPEG4/ISO/AVC": "h264",
     "V_MPEGH/ISO/HEVC": "hevc",
     "V_MPEG4/MS/V3": "mp4",
     "V_MPEG1": "mpg",
