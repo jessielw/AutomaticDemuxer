@@ -72,7 +72,7 @@ demux.video_demux(file_input=r"fileinput.mkv")
 `video_output_extension` The output extension in the form of a string. e.g. "mkv" or ".mkv"\
 *Optional: Defaults to "mkv"*
 
-`callback` Log callback progress to a variable instead of printing to consoleStream identifier\
+`callback` Log callback progress to a variable instead of printing to console\
 *Optional: Defaults to None*
 
 `fallback_ext` Extension on the form of a string. e.g. "mkv" or "mp4". Default is "mkv", if changed the program will
