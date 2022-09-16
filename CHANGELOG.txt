@@ -1,0 +1,6 @@
+Change Log
+==========
+
+1.0 (9/16/2022)
+-------------------
+- First Release: Added support to demux video tracks
