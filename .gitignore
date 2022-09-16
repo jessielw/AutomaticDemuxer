@@ -1,3 +1,5 @@
 .idea/
 __pycache__/
 env/
+AutomaticDemuxer.egg-info/
+dist/
