@@ -53,7 +53,7 @@ demux = AutoDemuxer()
 demux.video_demux(file_input=r"fileinput.mkv")
 ```
 
-## Parameters
+## Video Parameters
 
 `file_input` String or Pathlike path to input file.
 
