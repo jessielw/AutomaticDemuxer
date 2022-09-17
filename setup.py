@@ -4,6 +4,8 @@ classifiers = [
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',
     'Operating System :: Microsoft :: Windows',
+    'Operating System :: MacOS',
+    'Operating System :: POSIX :: Linux',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3'
 ]
@@ -13,7 +15,7 @@ long_desc = "A package that utilizes ffmpeg to automatically demux tracks into s
 
 setup(
     name='AutomaticDemuxer',
-    version='1.2',
+    version='1.3',
     description='Automatically Demux tracks from media-files',
     long_description=long_desc,
     url='https://github.com/jlw4049/AutomaticDemuxer',
