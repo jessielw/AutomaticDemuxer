@@ -4,6 +4,7 @@ import re
 import subprocess
 import threading
 from typing import Callable, Optional
+from sys import platform
 
 
 class Demuxer:
@@ -21,7 +22,7 @@ class Demuxer:
 
         :param command: Command in the format of a list for each white space ["echo", "hello!"]
         :param duration: Float of the total track duration, None if it could not be found
-        :param callback: This will allow you to collect the progress in a variable instead of printing to stdout
+        :param callback: This will allow you to collect the progress in a variable instead of printing to console
         """
         self.command = command
         self.duration = duration
@@ -34,16 +35,30 @@ class Demuxer:
 
     def _run_job(self):
         """run the job via subprocess Popen and call parse_output()"""
-        self.job = subprocess.Popen(
-            self.command,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            stdin=subprocess.DEVNULL,
-            creationflags=subprocess.CREATE_NO_WINDOW
-            | subprocess.CREATE_NEW_PROCESS_GROUP,
-        )
 
+        # if os is Windows
+        if platform.startswith("win32"):
+            self.job = subprocess.Popen(
+                self.command,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                stdin=subprocess.DEVNULL,
+                creationflags=subprocess.CREATE_NO_WINDOW
+                | subprocess.CREATE_NEW_PROCESS_GROUP,
+            )
+
+        # if os is anything other than windows
+        else:
+            self.job = subprocess.Popen(
+                self.command,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                stdin=subprocess.DEVNULL,
+            )
+
+        # run output parser
         self._parse_output()
 
     def _parse_output(self):
