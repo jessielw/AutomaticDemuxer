@@ -10,6 +10,10 @@ Developed by Jessie Wilson (2022)
 
 `pip install AutomaticDemuxer`
 
+**If using Linux you must also install MediaInfo**
+
+`sudo apt install mediainfo`
+
 ## Uninstall
 
 `pip uninstall AutomaticDemuxer`
