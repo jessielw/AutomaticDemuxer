@@ -79,6 +79,6 @@ demux.video_demux(file_input=r"fileinput.mkv")
 `callback` Log callback progress to a variable instead of printing to console\
 *Optional: Defaults to None*
 
-`fallback_ext` Extension on the form of a string. e.g. "mkv" or "mp4". Default is "mkv", if changed the program will
+`fallback_ext` Extension in the form of a string. e.g. "mkv" or "mp4". Default is "mkv", if changed the program will
 fall back to what ever extension is selected\
 *Optional: Defaults to "mkv"*
