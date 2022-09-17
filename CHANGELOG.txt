@@ -9,3 +9,7 @@ Change Log
 -------------------
 - Clean up pypi setup file
 - Added delay and output suffix to filename
+
+1.3 (9/17/2022)
+-------------------
+- Fix support for Linux/macOS operating systems
