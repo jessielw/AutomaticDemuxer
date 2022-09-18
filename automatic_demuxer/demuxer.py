@@ -3,6 +3,7 @@ import subprocess
 import threading
 from sys import platform
 from typing import Callable, Union
+from os import PathLike
 
 
 class Demuxer:
@@ -11,6 +12,7 @@ class Demuxer:
     def __init__(
         self,
         command: Union[str, list],
+        output_filename: Union[str, PathLike],
         duration: Union[float, None],
         callback: Callable[[dict], None] = None,
     ):
@@ -19,10 +21,12 @@ class Demuxer:
         clean up.
 
         :param command: Command in the format of a list for each white space ["echo", "hello!"]
+        :param output_filename: String/Path of the full output filename
         :param duration: Float of the total track duration, None if it could not be found
         :param callback: This will allow you to collect the progress in a variable instead of printing to console
         """
         self.command = command
+        self.output_filename = output_filename
         self.duration = duration
         self.callback = callback
         self.job = None
@@ -69,12 +73,16 @@ class Demuxer:
             if not self.callback:
                 print(formatted_line)
 
-            # if there is a call back set return a dictionary of the output and percent
+            # if there is a call back set return a dictionary of the output, percent, and filename
             elif self.callback:
                 # call convert_to_percent() function to display the percent to the user
                 convert_to_percent = self._convert_to_percent(formatted_line)
                 self.callback(
-                    {"output": str(formatted_line), "percent": convert_to_percent}
+                    {
+                        "output": str(formatted_line),
+                        "percent": convert_to_percent,
+                        "output_filename": self.output_filename,
+                    }
                 )
 
     def _convert_to_percent(self, formatted_line):
