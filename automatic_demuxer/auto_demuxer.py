@@ -140,7 +140,7 @@ class AutoDemuxer:
         ]
 
         # run the demuxer class to demux the file
-        Demuxer(command, self.duration, callback=self.callback)
+        Demuxer(command, output, self.duration, callback=self.callback)
 
 
 if __name__ == "__main__":

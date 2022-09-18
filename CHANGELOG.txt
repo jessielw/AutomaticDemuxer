@@ -21,3 +21,7 @@ Change Log
 1.32 (9/17/2022)
 -------------------
 - Callback when de-muxing now returns full output filename in the dictionary
+
+1.33 (9/17/2022)
+-------------------
+- Bugfix for new output file name mode
