@@ -1,14 +1,12 @@
-from __future__ import annotations
-
 import pathlib
 import shutil
 from os import PathLike
-from typing import Callable, Optional
+from typing import Callable, Union
+
+from pymediainfo import MediaInfo
 
 from automatic_demuxer.demuxer import Demuxer
 from automatic_demuxer.video_extension import get_video_extension
-
-from pymediainfo import MediaInfo
 
 
 class AutoDemuxer:
@@ -24,7 +22,7 @@ class AutoDemuxer:
         self.callback = None
 
     @staticmethod
-    def _check_file(file: str | PathLike):
+    def _check_file(file: Union[str, PathLike]):
         """
         check file input
 
@@ -39,7 +37,7 @@ class AutoDemuxer:
             raise FileNotFoundError(f"Could not locate '{file}'")
 
     @staticmethod
-    def _check_ffmpeg(ffmpeg: str | PathLike):
+    def _check_ffmpeg(ffmpeg: Union[str, PathLike]):
         """
         If ffmpeg is not None then check if ffmpeg is a file.
         If ffmpeg is None check for ffmpeg on the path.
@@ -66,13 +64,13 @@ class AutoDemuxer:
 
     def video_demux(
         self,
-        file_input: str | PathLike,
-        ffmpeg_path: str | PathLike | None = None,
-        track_number: int | str = 0,
+        file_input: Union[str, PathLike],
+        ffmpeg_path: Union[str, PathLike, None] = None,
+        track_number: Union[int, str] = 0,
         suffix: str = "_out_",
         insert_delay: bool = True,
-        video_output_extension: str | None = None,
-        callback: Optional[Callable[[dict], None]] | None = None,
+        video_output_extension: Union[str, None] = None,
+        callback: Callable[[dict], None] = None,
         fallback_ext: str = "mkv",
     ):
         """

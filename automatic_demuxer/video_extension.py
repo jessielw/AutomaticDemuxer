@@ -1,17 +1,16 @@
-from __future__ import annotations
-
 import pathlib
 from os import PathLike
+from typing import Union
 
 from automatic_demuxer.format_extensions import mkv_video_formats_conversion
 
 
 def get_video_extension(
-    file_input: str | PathLike,
+    file_input: Union[str, PathLike],
     media_info_instance: object,
-    track_number: str | int,
+    track_number: Union[str, int],
     fallback_ext: str,
-    extension: str | None,
+    extension: Union[str, None],
 ):
     """
     Check for video tracks and automatically generate the elementary video with a proper extension to demux

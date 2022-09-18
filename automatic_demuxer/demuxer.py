@@ -1,10 +1,8 @@
-from __future__ import annotations
-
 import re
 import subprocess
 import threading
-from typing import Callable, Optional
 from sys import platform
+from typing import Callable, Union
 
 
 class Demuxer:
@@ -12,9 +10,9 @@ class Demuxer:
 
     def __init__(
         self,
-        command: str | list,
-        duration: float | None,
-        callback: Optional[Callable[[dict], None]] | None = None,
+        command: Union[str, list],
+        duration: Union[float, None],
+        callback: Callable[[dict], None] = None,
     ):
         """
         Defines the variables for the class and executes the job in a thread, once completed joins the thread to
