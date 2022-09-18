@@ -15,7 +15,7 @@ long_desc = "A package that utilizes ffmpeg to automatically demux tracks into s
 
 setup(
     name='AutomaticDemuxer',
-    version='1.31',
+    version='1.32',
     description='Automatically Demux tracks from media-files',
     long_description=long_desc,
     url='https://github.com/jlw4049/AutomaticDemuxer',
