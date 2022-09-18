@@ -13,3 +13,7 @@ Change Log
 1.3 (9/17/2022)
 -------------------
 - Fix support for Linux/macOS operating systems
+
+1.4 (9/17/2022)
+-------------------
+- Added support for python versions below 3.7
