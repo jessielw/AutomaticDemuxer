@@ -14,6 +14,10 @@ Change Log
 -------------------
 - Fix support for Linux/macOS operating systems
 
-1.4 (9/17/2022)
+1.31 (9/17/2022)
 -------------------
 - Added support for python versions below 3.7
+
+1.32 (9/17/2022)
+-------------------
+- Callback when de-muxing now returns full output filename in the dictionary
