@@ -31,9 +31,11 @@ def callback_func(x):
     AutoDemuxer will return a dictionary with keys 'output' and 'percent'
     "output" will always display the ffmpeg command line output
     "percent" will return None if there is no track duration OR when the job hasn't fully started/is finished
+    "output_filename" will return a pathlike/string of the full path of the output filename
     """
     print(x["output"])
     print(x["percent"])
+    print(x["output_filename"])
 
     # check if x["percent"] is not none before using output
     if x["percent"]:
