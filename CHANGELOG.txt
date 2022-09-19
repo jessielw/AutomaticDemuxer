@@ -25,3 +25,9 @@ Change Log
 1.33 (9/17/2022)
 -------------------
 - Bugfix for new output file name mode
+
+1.34 (9/19/2022)
+-------------------
+- Removed output file name for callback
+- Callback now shows "output", "percent", and "job_pid"
+- You can now get the return code, output file name, and status by calling "status" on AutoDemux() instance
