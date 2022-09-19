@@ -20,6 +20,7 @@ class AutoDemuxer:
         self.track_number = None
         self.extension = None
         self.callback = None
+        self.status = None
 
     @staticmethod
     def _check_file(file: Union[str, PathLike]):
@@ -140,13 +141,29 @@ class AutoDemuxer:
         ]
 
         # run the demuxer class to demux the file
-        Demuxer(command, output, self.duration, callback=self.callback)
+        demux_instance = Demuxer(command, output, self.duration, callback=self.callback)
+        self.status = demux_instance.status
 
 
 if __name__ == "__main__":
     # example of video_demux with a call back "testing"
     def testing(x):
-        print(x)
+        """show a simple example of how to parse the callback"""
+        print(x["output"])
+        print(x["percent"])
+        print(x["job_pid"])
+
+        # I recommend checking if percent exists before attempting to use it
+        if x["percent"]:
+            print(f"I'm doing something with the percent {x['percent']}")
 
     demux = AutoDemuxer()
-    demux.video_demux(file_input=r"file_input.mkv", callback=testing)
+    demux.video_demux(
+        file_input=r"C:\Users\jlw_4\Desktop\Anything Goes (1956).mkv", callback=testing
+    )
+
+    # Once the job is complete you can return the status
+    print(demux.status)
+
+    # >>> {'return_code': 0, 'output_filename': WindowsPath('C:/Users/jlw_4/Desktop/Anything Goes (1956)_out_.mkv'),
+    # 'status': 'Ok'}

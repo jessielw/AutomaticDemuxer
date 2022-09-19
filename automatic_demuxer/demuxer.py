@@ -1,9 +1,9 @@
 import re
 import subprocess
 import threading
+from os import PathLike
 from sys import platform
 from typing import Callable, Union
-from os import PathLike
 
 
 class Demuxer:
@@ -29,9 +29,13 @@ class Demuxer:
         self.output_filename = output_filename
         self.duration = duration
         self.callback = callback
-        self.job = None
 
-        self.t1 = threading.Thread(target=self._run_job)
+        # variables to update as the program is running
+        self.job = None
+        self.status = None
+
+        # start the job in a thread
+        self.t1 = threading.Thread(target=self._run_job, daemon=True)
         self.t1.start()
         self.t1.join()
 
@@ -50,7 +54,7 @@ class Demuxer:
                 | subprocess.CREATE_NEW_PROCESS_GROUP,
             )
 
-        # if os is anything other than windows
+        # if os is anything other than Windows
         else:
             self.job = subprocess.Popen(
                 self.command,
@@ -73,7 +77,7 @@ class Demuxer:
             if not self.callback:
                 print(formatted_line)
 
-            # if there is a call back set return a dictionary of the output, percent, and filename
+            # if there is a call back set return a dictionary of the output, percent and job process ID
             elif self.callback:
                 # call convert_to_percent() function to display the percent to the user
                 convert_to_percent = self._convert_to_percent(formatted_line)
@@ -81,9 +85,12 @@ class Demuxer:
                     {
                         "output": str(formatted_line),
                         "percent": convert_to_percent,
-                        "output_filename": self.output_filename,
+                        "job_pid": self.job.pid,
                     }
                 )
+
+        # run return code method after loop has exited
+        self._return_code()
 
     def _convert_to_percent(self, formatted_line):
         """if there is a duration detected in the input track convert it to ms to obtain an accurate percentage"""
@@ -112,3 +119,23 @@ class Demuxer:
         # if no duration is found return None
         elif not self.duration:
             return None
+
+    def _return_code(self):
+        """
+        Wait for subprocess job to end and return the job code, output file name, and status.
+        If the self.job.poll() returned 0 it's a good indicator that the job was completed.
+        We will check for full path and job code equaling 0 and return the status of "Ok".
+        """
+        self.job.wait()
+
+        if self.job.poll() == 0:
+            job_status = "Ok"
+        else:
+            job_status = "Error"
+
+        # update status with return code and output file name
+        self.status = {
+            "return_code": self.job.poll(),
+            "output_filename": self.output_filename,
+            "status": job_status,
+        }
